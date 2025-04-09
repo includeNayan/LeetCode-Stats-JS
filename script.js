@@ -29,22 +29,14 @@ document.addEventListener("DOMContentLoaded",function() {
         }
     
 
-        Searchbutton.addEventListener('click', function() {
-            const username = Userinput.value;
-            console.log("Login Username: ",username);
-            if(validate(username)) {
-                fetchDetails(username);
-            }
-        })
-
-
         async function fetchDetails(username) {
             try{
-                searchbtn.textContent = "Searching...";
-                searchbtn.disabled = true;
-                //statscnt.classList.add("none");
+                Searchbutton.textContent = "Searching...";
+                Searchbutton.disabled = true;
+                //demo proxy url will request the lc server and server will acknowledge it
                 const proxyUrl = 'http://localhost:8080/';
                 const targetUrl = 'https://leetcode.com/graphql/';
+                // concatenated url proxyurl + targeturl
                 const myHeaders = new Headers();
                 myHeaders.append("content-type", "application/json");
     
@@ -56,6 +48,7 @@ document.addEventListener("DOMContentLoaded",function() {
                     method: "POST", 
                     headers: myHeaders,
                     body: graphql,
+                    redirect: "follow"
                 };
                 const response = await fetch(proxyUrl+targetUrl,requestOptions);
                 if(!response.ok) {
@@ -70,18 +63,12 @@ document.addEventListener("DOMContentLoaded",function() {
                 statscnt.innerHTML = `<p>No Data Found</p>`;
             }
             finally {
-                searchbtn.textContent = "Search";
-                searchbtn.disabled = false;
+                Searchbutton.textContent = "Search";
+                Searchbutton.disabled = false;
             }
         }
-    
-        function updateProgress(solved,total,label,circle) {
-            const progressDegree = (solved/total)*100;
-            circle.style.setProperty("--progress-degree",`${progressDegree}%`);
-            label.textContent = `${solved}/${total}`;
-    
-        }
-    
+
+
         function displayData(parsedData) {
             const total = parsedData.data.allQuestionsCount[0].count;
             const easytotal = parsedData.data.allQuestionsCount[1].count;
@@ -115,6 +102,25 @@ document.addEventListener("DOMContentLoaded",function() {
             ).join("")
     
         }
+
+        Searchbutton.addEventListener('click', function() {
+            const username = Userinput.value;
+            console.log("Login Username: ",username);
+            if(validate(username)) {
+                // is the name in the database or not
+                fetchDetails(username);
+            }
+        })
+
+
+    
+//         function updateProgress(solved,total,label,circle) {
+//             const progressDegree = (solved/total)*100;
+//             circle.style.setProperty("--progress-degree",`${progressDegree}%`);
+//             label.textContent = `${solved}/${total}`;
+    
+//         }
+    
     
     })
 })
