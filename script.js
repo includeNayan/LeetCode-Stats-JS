@@ -12,20 +12,32 @@ document.addEventListener("DOMContentLoaded",function() {
         const hardLabel = document.getElementById("hardlabel");
         const cardstat = document.querySelector("card");
     
-        // 
+        // return true or false based on a regex
         function validate(username) {
+            //check for empty string
             if(username.trim() === "") {
                 alert("Username should not be empty");
                 return false;
             }
             const regex = /^[a-zA-Z0-9_-]{1,20}$/;
             const isMatch = regex.test(username);
+            // checking the regex with the username
             if(!isMatch) {
                 alert("Invalid Username");
             }
             return isMatch;
         }
     
+
+        Searchbutton.addEventListener('click', function() {
+            const username = Userinput.value;
+            console.log("Login Username: ",username);
+            if(validate(username)) {
+                fetchDetails(username);
+            }
+        })
+
+
         async function fetchDetails(username) {
             try{
                 searchbtn.textContent = "Searching...";
@@ -104,11 +116,5 @@ document.addEventListener("DOMContentLoaded",function() {
     
         }
     
-        searchbtn.addEventListener('click', function() {
-            const username = userinpt.value;
-            if(validate(username)) {
-                fetchDetails(username);
-            }
-        })
     })
 })
