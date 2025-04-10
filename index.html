@@ -7,43 +7,57 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <div class="header-content">
+            <div class="logo-group">
+                <p class="logo-text">LEETCODE</p>
+            <img src="leetcodelogo.webp" alt="LeetCode Logo" class="logo-img">
+            <p class="logo-text stats-text">STATS</p>
+        </div>
+    </header>
     <div class="container">
-        <h1>LeetCode Stats</h1>
-        
         <div class="usercontainer">
-            <p>Enter your username below:</p>
+            <label for="userinput" class="input-label">Enter your username below:</label>
+            
             <div class="usernameinput">
                 <input type="text" placeholder="Enter Username" id="userinput">
                 <button id="search">Search</button>
             </div>
         </div>
-
+        
         <div class="statcontainer">
             <div class="progress">
-                <div class="progressitem circle">
-                    <div class="easy">
-                        <span id="easylabel">Easy</span>
+                <div class="progressitem">
+                    <div class="easy circle">
+                        <span id="easylabel"><p>Easy</p></span>
                     </div>
                 </div>
-
-                <div class="progressitem circle">
-                    <div class="medium">
-                        <span id="mediumlabel">Medium</span>
+                <div class="progressitem">
+                    <div class="medium circle">
+                        <span id="mediumlabel"><p>Medium</p></span>
                     </div>
                 </div>
-
-                <div class="progressitem circle">
-                    <div class="hard">
-                        <span id="hardlabel">Hard</span>
+                <div class="progressitem">
+                    <div class="hard circle">
+                        <span id="hardlabel"><p>Hard</p></span>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="card">
+            <div class="cardst">
                 <!-- from JS -->
             </div>
         </div>
+        </main>
     </div>
+    <footer>
+        <div class="footerbox">
+            <p>
+                Copyright &copy; LeetCode Stats By Nayan 2025 All Rights Reserved
+            </p>
+        </div>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
