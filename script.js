@@ -69,6 +69,13 @@ document.addEventListener("DOMContentLoaded",function() {
         }
 
 
+        function updateProgress(solved,total,label,circle) {
+            const progressDegree = (solved/total)*100;
+            circle.style.setProperty("--progress-degree",`${progressDegree}%`);
+            label.textContent = `${solved}/${total}`;
+    
+        }
+
         function displayData(parsedData) {
             const total = parsedData.data.allQuestionsCount[0].count;
             const easytotal = parsedData.data.allQuestionsCount[1].count;
@@ -79,9 +86,9 @@ document.addEventListener("DOMContentLoaded",function() {
             const soleasy = parsedData.data.matchedUser.submitStats.acSubmissionNum[1].count;
             const solmed = parsedData.data.matchedUser.submitStats.acSubmissionNum[2].count;
             const solhard = parsedData.data.matchedUser.submitStats.acSubmissionNum[3].count;
-            updateProgress(soleasy,easytotal,easyLabel,easyCircle);
-            updateProgress(solmed,medtotal,medLabel,medCircle);
-            updateProgress(solhard,hardtotal,hardLabel,hardCircle);
+            updateProgress(soleasy,easytotal,easyLabel,easycircle);
+            updateProgress(solmed,medtotal,medLabel,medcircle);
+            updateProgress(solhard,hardtotal,hardLabel,hardcircle);
     
             const cardsData = [
                 {label : "Overall Submissions", value: parsedData.data.matchedUser.submitStats.totalSubmissionNum[0].submissions},
@@ -111,15 +118,6 @@ document.addEventListener("DOMContentLoaded",function() {
                 fetchDetails(username);
             }
         })
-
-
-    
-//         function updateProgress(solved,total,label,circle) {
-//             const progressDegree = (solved/total)*100;
-//             circle.style.setProperty("--progress-degree",`${progressDegree}%`);
-//             label.textContent = `${solved}/${total}`;
-    
-//         }
     
     
     })
